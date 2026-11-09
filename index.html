@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://trlily.github.io/">
 <meta property="og:title" content="김가연 Gayeon Kim · 연세대학교 의과대학 의학과 · Medical AI">
 <meta property="og:description" content="김가연, 연세대학교 의과대학 의학과 석박사통합과정 · Medical AI, PET/CT image restoration, neuroimaging">
-<meta property="og:image" content="https://trlily.github.io/images/profile.jpg?v=4">
+<meta property="og:image" content="https://trlily.github.io/images/profile.jpg?v=5">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ko_KR">
 <script type="application/ld+json">
@@ -22,7 +22,7 @@
   "name": "Gayeon Kim",
   "alternateName": ["김가연", "Kim Gayeon"],
   "url": "https://trlily.github.io/",
-  "image": "https://trlily.github.io/images/profile.jpg?v=4",
+  "image": "https://trlily.github.io/images/profile.jpg?v=5",
   "email": "mailto:dukan98765@gmail.com",
   "jobTitle": "Integrated MS/PhD Student",
   "affiliation": {
@@ -110,9 +110,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 }
 
 /* Identity column */
-.side { position: sticky; top: 40px; align-self: start; display: flex; flex-direction: column; gap: 28px; }
-.photo { width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--line); margin-bottom: 20px; }
-.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.side { position: sticky; top: 40px; align-self: start; display: flex; flex-direction: column; gap: 28px; max-height: calc(100vh - 56px); overflow-y: auto; scrollbar-width: thin; padding-right: 4px; }
+.photo { width: 200px; max-width: 100%; border-radius: 10px; overflow: hidden; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--line); margin-bottom: 20px; }
+.photo img { width: 100%; height: auto; display: block; }
 .side h1 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -238,7 +238,7 @@ footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--lin
 
 @media (max-width: 900px) {
   .page { grid-template-columns: 1fr; gap: 40px; padding-top: 36px; }
-  .side { position: static; }
+  .side { position: static; max-height: none; overflow: visible; padding-right: 0; }
   nav.toc { display: none; }
   .highlights { grid-template-columns: 1fr; }
 }
@@ -246,7 +246,7 @@ footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--lin
   .page { padding-left: 16px; padding-right: 16px; }
   .row, .awards li { grid-template-columns: 1fr; gap: 2px; }
   .side h1 { font-size: 2.2rem; }
-  .photo { width: 112px; height: 112px; }
+  .photo { width: 170px; }
 }
 </style>
 </head>
@@ -255,7 +255,7 @@ footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--lin
 
   <aside class="side">
     <div>
-      <div class="photo"><img src="images/profile.jpg?v=4" alt="Gayeon Kim" onerror="this.parentElement.style.display='none'"></div>
+      <div class="photo"><img src="images/profile.jpg?v=5" width="516" height="891" alt="Gayeon Kim" onerror="this.parentElement.style.display='none'"></div>
       <h1>Gayeon Kim</h1>
       <div class="scale" aria-hidden="true"></div>
     </div>
