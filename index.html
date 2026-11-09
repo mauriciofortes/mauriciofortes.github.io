@@ -246,9 +246,11 @@ button.g-card:hover { border-color: var(--accent); }
 .lightbox.open { display: grid; }
 .lightbox figure { margin: 0; display: flex; flex-direction: column; gap: 10px; max-width: min(960px, 100%); }
 .lightbox img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 4px; background: #ffffff; }
+.lightbox.tall { place-items: start center; overflow-y: auto; padding-top: 64px; }
+.lightbox.tall img { max-height: none; width: min(900px, 100%); }
 .lightbox figcaption { color: #e6ebf2; font-size: 0.9rem; }
 .lb-close {
-  position: absolute; top: 16px; right: 16px;
+  position: fixed; top: 16px; right: 16px;
   font: 500 0.85rem var(--font-body); color: #e6ebf2;
   background: transparent; border: 1px solid rgba(230, 235, 242, 0.4); border-radius: 999px;
   padding: 6px 14px; cursor: pointer;
@@ -492,7 +494,7 @@ const GALLERY = [
   { src: "images/ksnm-2026-poster.jpg", cat: "conference", date: "2026", title: "Poster session, KSNM & ARCCNM 2026", file: "images/ksnm-2026-poster.jpg", pos: "50% 12%" },
   { src: "images/capstone-first-prize.jpg", cat: "award",      date: "2025", title: "First Prize, Capstone Design Competition",        file: "images/capstone-first-prize.jpg" },
   { src: "images/hyundai-mobis.jpg", cat: "award",      date: "2025", title: "First Prize, Hyundai Mobis Competition",          file: "images/hyundai-mobis.jpg" },
-  { src: "", cat: "project",    date: "2025", title: "Graduation project: Automated Response System for Vehicle Accidents", file: "images/graduation-project.jpg" }
+  { src: "images/graduation-project.jpg", cat: "project",    date: "2025", title: "Graduation project: Automated Response System for Vehicle Accidents", file: "images/graduation-project.jpg", pos: "50% 8%", tall: true }
 ];
 
 const CATS = { all: "All", award: "Awards & Certificates", conference: "Conferences", project: "Projects" };
@@ -550,6 +552,8 @@ function openLightbox(g, from) {
   lastFocus = from;
   lbImg.src = g.src; lbImg.alt = g.title;
   lbCap.textContent = g.title + " · " + g.date;
+  lb.classList.toggle("tall", !!g.tall);
+  lb.scrollTop = 0;
   lb.classList.add("open");
   document.getElementById("lb-close").focus();
 }
