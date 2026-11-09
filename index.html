@@ -111,7 +111,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 
 /* Identity column */
 .side { position: sticky; top: 40px; align-self: start; display: flex; flex-direction: column; gap: 28px; max-height: calc(100vh - 56px); overflow-y: auto; scrollbar-width: thin; padding-right: 4px; }
-.photo { width: 200px; max-width: 100%; border-radius: 10px; overflow: hidden; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--line); margin-bottom: 20px; }
+.photo { width: 100%; overflow: hidden; border: 1px solid var(--line); margin-bottom: 20px; }
 .photo img { width: 100%; height: auto; display: block; }
 .side h1 {
   font-family: var(--font-display);
@@ -246,7 +246,7 @@ footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--lin
   .page { padding-left: 16px; padding-right: 16px; }
   .row, .awards li { grid-template-columns: 1fr; gap: 2px; }
   .side h1 { font-size: 2.2rem; }
-  .photo { width: 170px; }
+  .photo { max-width: 300px; }
 }
 </style>
 </head>
