@@ -234,8 +234,8 @@ button.g-card:hover { border-color: var(--accent); }
   background: var(--accent-soft); color: var(--muted);
   font-family: var(--font-mono); font-size: 0.7rem; text-align: center; line-height: 1.5;
 }
-.g-thumb.has-img { padding: 0; background: var(--line); }
-.g-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.g-thumb.has-img { position: relative; padding: 0; overflow: hidden; background: var(--line); }
+.g-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .g-cap { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
 .g-cap b { font-size: 0.9rem; font-weight: 700; line-height: 1.35; }
 .g-cap span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
