@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gayeon Kim</title>
+<meta name="description" content="Gayeon Kim, integrated MS/PhD student in medical AI at Yonsei University College of Medicine. PET/CT image restoration, diffusion models, neuroimaging.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,600;6..72,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky identity column on the left, CV sections on the right; one column on phones.
+   Detail: a thin blue colormap bar marks the name, the way a scale bar sits beside a scan. */
+:root {
+  --bg: #f8fafd;
+  --surface: #ffffff;
+  --ink: #0a1120;
+  --muted: #3c475a;
+  --line: #c3cedd;
+  --accent: #0b57d0;
+  --accent-soft: #dce8fc;
+  --on-accent: #ffffff;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --colormap: linear-gradient(90deg, #08306b, #08519c, #2171b5, #4292c6, #6baed6, #9ecae1, #c6dbef);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1018;
+    --surface: #131b27;
+    --ink: #f3f6fb;
+    --muted: #b6c0cf;
+    --line: #34405a;
+    --accent: #8ab8ff;
+    --accent-soft: #1b2d4d;
+    --on-accent: #0d1626;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1018;
+  --surface: #131b27;
+  --ink: #f3f6fb;
+  --muted: #b6c0cf;
+  --line: #34405a;
+  --accent: #8ab8ff;
+  --accent-soft: #1b2d4d;
+  --on-accent: #0d1626;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 64px;
+}
+
+/* Identity column */
+.side { position: sticky; top: 40px; align-self: start; display: flex; flex-direction: column; gap: 28px; }
+.photo { width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--line); margin-bottom: 20px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.side h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.7rem;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.scale { height: 8px; width: 100%; border-radius: 3px; background: var(--colormap); margin-top: 14px; }
+.role { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+.role strong { color: var(--ink); font-weight: 500; }
+
+.contact { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem; }
+.contact span { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--ink); display: inline-block; width: 56px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.side h2 {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chips li { font-size: 0.82rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+.skills { margin: 0; display: grid; gap: 10px; font-size: 0.88rem; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; color: var(--muted); }
+
+nav.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; font-size: 0.9rem; }
+nav.toc a { color: var(--ink); font-weight: 500; text-decoration: none; display: block; padding: 2px 0 2px 12px; border-left: 2px solid var(--line); }
+nav.toc a:hover { border-left-color: var(--accent); color: var(--accent); }
+
+/* Main column */
+main { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
+section h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--ink);
+  text-wrap: balance;
+}
+
+.lede { font-size: 1.08rem; max-width: 62ch; margin: 0; }
+
+.highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.hl { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.hl b { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; }
+.hl span { font-size: 0.85rem; color: var(--muted); line-height: 1.45; }
+
+/* Dated rows */
+.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.row { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 20px; }
+.date { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--ink); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.row h3 { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.45; }
+.row .sub { margin: 2px 0 0; color: var(--muted); font-size: 0.92rem; }
+.row ul.points { margin: 8px 0 0; padding-left: 18px; font-size: 0.94rem; display: flex; flex-direction: column; gap: 4px; max-width: 64ch; }
+.row ul.points li::marker { color: var(--accent); }
+
+.pub .authors { margin: 4px 0 0; font-size: 0.92rem; color: var(--muted); }
+.pub .authors b { color: var(--ink); font-weight: 600; }
+.venue { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+.tag.strong { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 500; }
+
+.awards { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.awards li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 20px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+.awards li:last-child { border-bottom: 0; }
+
+/* Gallery */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.filters button {
+  font: 500 0.82rem var(--font-body);
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.filters button:hover { border-color: var(--accent); }
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.filters button:focus-visible, .g-card:focus-visible, .lb-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.g-card {
+  display: flex; flex-direction: column; text-align: left; width: 100%;
+  padding: 0; margin: 0; font: inherit; color: inherit;
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  background: var(--surface);
+}
+button.g-card { cursor: zoom-in; }
+button.g-card:hover { border-color: var(--accent); }
+.g-thumb {
+  aspect-ratio: 4 / 3; display: grid; place-items: center; padding: 12px;
+  background: var(--accent-soft); color: var(--muted);
+  font-family: var(--font-mono); font-size: 0.7rem; text-align: center; line-height: 1.5;
+}
+.g-thumb.has-img { padding: 0; background: var(--line); }
+.g-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.g-cap { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
+.g-cap b { font-size: 0.9rem; font-weight: 700; line-height: 1.35; }
+.g-cap span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.lightbox {
+  position: fixed; inset: 0; z-index: 10; display: none; place-items: center; padding: 24px;
+  background: rgba(6, 12, 22, 0.88);
+}
+.lightbox.open { display: grid; }
+.lightbox figure { margin: 0; display: flex; flex-direction: column; gap: 10px; max-width: min(960px, 100%); }
+.lightbox img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 4px; background: #ffffff; }
+.lightbox figcaption { color: #e6ebf2; font-size: 0.9rem; }
+.lb-close {
+  position: absolute; top: 16px; right: 16px;
+  font: 500 0.85rem var(--font-body); color: #e6ebf2;
+  background: transparent; border: 1px solid rgba(230, 235, 242, 0.4); border-radius: 999px;
+  padding: 6px 14px; cursor: pointer;
+}
+
+footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 900px) {
+  .page { grid-template-columns: 1fr; gap: 40px; padding-top: 36px; }
+  .side { position: static; }
+  nav.toc { display: none; }
+  .highlights { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .page { padding-left: 16px; padding-right: 16px; }
+  .row, .awards li { grid-template-columns: 1fr; gap: 2px; }
+  .side h1 { font-size: 2.2rem; }
+  .photo { width: 112px; height: 112px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="side">
+    <div>
+      <div class="photo"><img src="images/profile.jpg" alt="Gayeon Kim" onerror="this.parentElement.style.display='none'"></div>
+      <h1>Gayeon Kim</h1>
+      <div class="scale" aria-hidden="true"></div>
+    </div>
+
+    <p class="role"><strong>Integrated MS/PhD Student</strong><br>Department of Medicine<br>Yonsei University College of Medicine</p>
+
+    <ul class="contact">
+      <li><span>Email</span><a href="mailto:dukan98765@gmail.com">dukan98765@gmail.com</a></li>
+      <li><span>GitHub</span><a href="https://github.com/trlily">github.com/trlily</a></li>
+      <li><span>Lab</span>MIND Lab, Severance Hospital</li>
+    </ul>
+
+    <div>
+      <h2>Research interests</h2>
+      <ul class="chips">
+        <li>Medical AI</li>
+        <li>Computer Vision</li>
+        <li>Pattern Recognition</li>
+        <li>Deep Learning</li>
+        <li>Machine Learning</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Python, C, C++</dd></div>
+        <div><dt>ML frameworks</dt><dd>PyTorch, TensorFlow</dd></div>
+        <div><dt>Vision &amp; imaging</dt><dd>OpenCV (Python, C++), MATLAB</dd></div>
+        <div><dt>Algorithms</dt><dd>Algorithm implementation and data structure design</dd></div>
+      </dl>
+    </div>
+
+    <nav class="toc" aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#research">Research experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#awards">Awards &amp; honors</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#activities">Activities</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section id="about" aria-label="About">
+      <p class="lede">I work on deep learning for medical imaging, with a focus on PET/CT image restoration and neuroimaging. My current research at the MIND Lab covers CT-to-MRI translation, PET quantification, and brain lesion and region segmentation for dementia and other neurodegenerative disorders.</p>
+      <div class="highlights">
+        <div class="hl"><b>EANM 2026</b><span>Top Rated Oral Presentation for dose-aware diffusion models in PET</span></div>
+        <div class="hl"><b>AJNR 2026</b><span>First-author paper on DCLGAN for PET/CT scan-time reduction (IF 3.7)</span></div>
+        <div class="hl"><b>KSNM &amp; ARCCNM</b><span>2026 Best Poster Award for the same dose-aware diffusion work</span></div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications &amp; Presentations</h2>
+      <ol class="rows" reversed>
+        <li class="row pub">
+          <div class="date">2026</div>
+          <div>
+            <h3>Dose-Aware Diffusion Models for Standardizing Cross-Institutional PET Image Quality: A Solution for External Referrals</h3>
+            <p class="authors"><b>Gayeon Kim</b>, Sangwon Lee, Mijin Yoon</p>
+            <div class="venue"><span class="tag">EANM 2026</span><span class="tag strong">Top Rated Oral Presentation</span></div>
+            <div class="venue"><span class="tag">KSNM &amp; ARCCNM 2026 · Poster</span><span class="tag strong">Best Poster Award</span></div>
+          </div>
+        </li>
+        <li class="row pub">
+          <div class="date">2026</div>
+          <div>
+            <h3>The Potency of DCLGAN for Reducing Scan Time in PET/CT Imaging with Different Radiotracers of Clinical Importance</h3>
+            <p class="authors"><b>Gayeon Kim</b>, Dongwoo Kim, Mijin Yoon, et al.</p>
+            <div class="venue"><span class="tag">AJNR 2026</span><span class="tag">IF 3.7</span></div>
+          </div>
+        </li>
+        <li class="row pub">
+          <div class="date">2026</div>
+          <div>
+            <h3>A Comparative Study on Semi-Supervised Learning Performance Using Clustering-Based Pseudo-Labeling</h3>
+            <p class="authors"><b>Gayeon Kim</b>, Sooin Kim</p>
+            <div class="venue"><span class="tag">JOK 2026</span></div>
+          </div>
+        </li>
+        <li class="row pub">
+          <div class="date">2025</div>
+          <div>
+            <h3>A Privacy Intelligence-Based Protection System for Social Media Image Sharing: Automated Detection and Consent-Oriented Design</h3>
+            <p class="authors"><b>Gayeon Kim</b>, Jiyeon Yoo</p>
+            <div class="venue"><span class="tag">KIISE 2025</span></div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="research">
+      <h2>Research Experience</h2>
+      <ul class="rows">
+        <li class="row">
+          <div class="date">Sep 2025 –<br>Present</div>
+          <div>
+            <h3>MIND Lab, Yonsei University (Severance Hospital Cancer Center)</h3>
+            <p class="sub">Graduate Research Assistant, Jan 2026 – Present · Undergraduate Research Intern, Sep – Dec 2025</p>
+            <ul class="points">
+              <li>Conduct AI-based neuroimaging research on dementia and other neurodegenerative disorders, specializing in CT-to-MRI translation, PET quantification, and deep learning-based brain lesion and region segmentation.</li>
+              <li>Facilitate medical AI research through clinical data management and technical support within the medical center.</li>
+              <li>Support clinical research projects and laboratory operations as an officially appointed university staff member.</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="rows">
+        <li class="row">
+          <div class="date">Mar 2026 –</div>
+          <div>
+            <h3>Yonsei University, Seoul</h3>
+            <p class="sub">Combined Master's–Doctoral Program, Department of Medicine · GPA 4.3 / 4.3</p>
+          </div>
+        </li>
+        <li class="row">
+          <div class="date">Mar 2022 –<br>Feb 2026</div>
+          <div>
+            <h3>Sangmyung University, Seoul</h3>
+            <p class="sub">B.S., Department of Human-Centered Artificial Intelligence · Early graduation · GPA 4.37 / 4.5</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <h2>Awards &amp; Honors</h2>
+      <ul class="awards">
+        <li><span class="date">2026-2</span><span>Best Poster Award, KSNM &amp; ARCCNM 2026</span></li>
+        <li><span class="date">2025-2</span><span>First Prize, Capstone Design Competition &amp; Scholarship</span></li>
+        <li><span class="date">2025-2</span><span>Graduation Project Scholarship</span></li>
+        <li><span class="date">2025-2</span><span>First Prize, Hyundai Mobis Competition</span></li>
+        <li><span class="date">2025-1</span><span>Major Subject Presentation Contest</span></li>
+        <li><span class="date">2025-1</span><span>Global S.A.P. (Study Abroad Program), Awarded for Academic Excellence</span></li>
+        <li><span class="date">2024-2</span><span>University Innovation Support Scholarship, Reading Papers</span></li>
+        <li><span class="date">2024-2</span><span>University Innovation Support Scholarship, Department Student Ambassador</span></li>
+        <li><span class="date">2023-2</span><span>First Prize, SMU Presentation Competition on Graduate School</span></li>
+        <li><span class="date">2022-2</span><span>First Prize, S.W. Human Resources Scholarship</span></li>
+        <li><span class="date">2022-2 · 2023-1 · 2023-2</span><span>Highest GPA in the Department &amp; Scholarship</span></li>
+        <li><span class="date">2022-1</span><span>Second Highest GPA in the Department &amp; Scholarship</span></li>
+      </ul>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="filters" role="group" aria-label="Filter gallery" id="gallery-filters"></div>
+      <div class="gallery" id="gallery-grid"></div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="rows">
+        <li class="row"><div class="date">2025-2</div><div><h3>Dementia MRI Classification and Image Restoration using GAN</h3></div></li>
+        <li class="row"><div class="date">2025-2</div><div><h3>Image-Processing Model for Road Hazard Detection and Automatic Windshield Adjustment</h3></div></li>
+        <li class="row"><div class="date">2025-1</div><div><h3>A Comparative Study on Semi-Supervised Learning Performance Using Clustering-Based Pseudo-Labeling</h3></div></li>
+        <li class="row"><div class="date">2025-1</div><div><h3>Image-Based Emotion and Style Analysis for Urban Characterization</h3></div></li>
+        <li class="row"><div class="date">2025-1</div><div><h3>Automated Response System for Vehicle Accidents</h3><p class="sub">Graduation project</p></div></li>
+        <li class="row"><div class="date">2023-2</div><div><h3>Virtual Fitting of Light-Colored Clothes</h3></div></li>
+      </ul>
+    </section>
+
+    <section id="activities">
+      <h2>Extracurricular Activities</h2>
+      <ul class="rows">
+        <li class="row">
+          <div class="date">Spring –<br>Fall 2025</div>
+          <div>
+            <h3>BAMBOO AI Study Club</h3>
+            <p class="sub">Session Leader &amp; Member</p>
+            <ul class="points">
+              <li>Led deep learning implementation sessions based on <em>Deep Learning from Scratch</em>, guiding peers through model tuning and debugging.</li>
+              <li>Reviewed and presented recent AI research papers, summarizing core methods and their applications.</li>
+              <li>Contributed to collaborative AI projects within the club.</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <footer>Last updated November 2026</footer>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lb-close" type="button">Close</button>
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script>
+/*
+  HOW TO ADD A PHOTO OR CERTIFICATE
+  1. Put the image file in the "images" folder next to index.html (e.g. images/ksnm-best-poster.jpg).
+  2. Fill in "src" below with that path. Items with an empty src show a placeholder card.
+  3. To add a new item, copy one line and change it. cat is one of: award, conference, project.
+*/
+const GALLERY = [
+  { src: "", cat: "award",      date: "2026", title: "Best Poster Award, KSNM & ARCCNM 2026",           file: "images/ksnm-best-poster.jpg" },
+  { src: "", cat: "conference", date: "2026", title: "EANM 2026, Top Rated Oral Presentation",          file: "images/eanm-2026-oral.jpg" },
+  { src: "", cat: "conference", date: "2026", title: "Poster session, KSNM & ARCCNM 2026",              file: "images/ksnm-2026-poster.jpg" },
+  { src: "", cat: "award",      date: "2025", title: "First Prize, Capstone Design Competition",        file: "images/capstone-first-prize.jpg" },
+  { src: "", cat: "award",      date: "2025", title: "First Prize, Hyundai Mobis Competition",          file: "images/hyundai-mobis.jpg" },
+  { src: "", cat: "project",    date: "2025", title: "Graduation project: Automated Response System for Vehicle Accidents", file: "images/graduation-project.jpg" }
+];
+
+const CATS = { all: "All", award: "Awards & Certificates", conference: "Conferences", project: "Projects" };
+const grid = document.getElementById("gallery-grid");
+const filters = document.getElementById("gallery-filters");
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lb-img");
+const lbCap = document.getElementById("lb-cap");
+let lastFocus = null;
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text) n.textContent = text;
+  return n;
+}
+
+function render(filter) {
+  grid.textContent = "";
+  GALLERY.filter(g => filter === "all" || g.cat === filter).forEach(g => {
+    const card = el(g.src ? "button" : "div", "g-card");
+    if (g.src) card.type = "button";
+    const thumb = el("div", "g-thumb" + (g.src ? " has-img" : ""));
+    if (g.src) {
+      const img = el("img");
+      img.src = g.src; img.alt = g.title; img.loading = "lazy";
+      thumb.appendChild(img);
+      card.addEventListener("click", () => openLightbox(g, card));
+    } else {
+      thumb.textContent = "Image to be added\n" + g.file;
+      thumb.style.whiteSpace = "pre-line";
+    }
+    const cap = el("div", "g-cap");
+    cap.appendChild(el("b", "", g.title));
+    cap.appendChild(el("span", "", g.date + " · " + CATS[g.cat]));
+    card.appendChild(thumb);
+    card.appendChild(cap);
+    grid.appendChild(card);
+  });
+}
+
+function renderFilters(active) {
+  filters.textContent = "";
+  Object.keys(CATS).forEach(key => {
+    if (key !== "all" && !GALLERY.some(g => g.cat === key)) return;
+    const b = el("button", "", CATS[key]);
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(key === active));
+    b.addEventListener("click", () => { renderFilters(key); render(key); });
+    filters.appendChild(b);
+  });
+}
+
+function openLightbox(g, from) {
+  lastFocus = from;
+  lbImg.src = g.src; lbImg.alt = g.title;
+  lbCap.textContent = g.title + " · " + g.date;
+  lb.classList.add("open");
+  document.getElementById("lb-close").focus();
+}
+function closeLightbox() {
+  lb.classList.remove("open");
+  lbImg.removeAttribute("src");
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById("lb-close").addEventListener("click", closeLightbox);
+lb.addEventListener("click", e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && lb.classList.contains("open")) closeLightbox(); });
+
+renderFilters("all");
+render("all");
+</script>
+</body>
+</html>
